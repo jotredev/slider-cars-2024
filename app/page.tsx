@@ -1,113 +1,113 @@
-import Image from 'next/image'
+'use client';
+
+import { useState } from 'react';
+
+import SliderItem from '@/components/widgets/slider-item';
+import SliderThumbnailItem from '@/components/widgets/slider-thumbnail-item';
+import Arrows from '@/components/widgets/arrows';
 
 export default function Home() {
+  const [itemActive, setItemActive] = useState<number>(1);
+  const countItems = 5;
+
+  const onNext = () => {
+    setItemActive(itemActive + 1);
+    if (itemActive >= countItems) {
+      setItemActive(1);
+    }
+  };
+
+  const onPrevius = () => {
+    setItemActive(itemActive - 1);
+    if (itemActive === 1) {
+      setItemActive(5);
+    }
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <div className='h-screen relative'>
+      <ul>
+        <SliderItem
+          itemActive={itemActive}
+          id={1}
+          image='/imgs/1.webp'
+          brand='Dodge'
+          name='Challenger'
+          desc='El Dodge Challenger es un potente muscle car con diseño clásico y altas prestaciones, destacando por su fuerza y estilo impactante.'
         />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+        <SliderItem
+          itemActive={itemActive}
+          id={2}
+          image='/imgs/2.webp'
+          brand='Dodge'
+          name='Camaro'
+          desc='El Dodge Camaro es un icónico muscle car con líneas agresivas, rendimiento poderoso y una estética moderna que cautiva a los amantes de la velocidad.'
+        />
+        <SliderItem
+          itemActive={itemActive}
+          id={3}
+          image='/imgs/3.webp'
+          brand='Dodge'
+          name='Charger'
+          desc='El Dodge Charger es una sedán deportivo con diseño imponente, potente rendimiento y características de alto nivel, fusionando estilo y velocidad.'
+        />
+        <SliderItem
+          itemActive={itemActive}
+          id={4}
+          image='/imgs/4.webp'
+          brand='Jeep'
+          name='Jeep'
+          desc='Jeep, sinónimo de aventura todoterreno. Modelos como el Wrangler y Grand Cherokee ofrecen robustez y estilo icónico en cada viaje.'
+        />
+        <SliderItem
+          itemActive={itemActive}
+          id={5}
+          image='/imgs/5.webp'
+          brand='Dodge'
+          name='Ram'
+          desc='La Dodge Ram es una robusta camioneta con poderoso rendimiento y lujoso interior. Con un diseño imponente, es líder en fuerza y comodidad.'
+        />
+      </ul>
+      {/* Buttons arrows */}
+      <Arrows onClickPrev={() => onPrevius()} onClickNext={() => onNext()} />
+      {/* Thumbnails */}
+      <ul className='absolute bottom-0 z-10 flex sm:justify-end gap-3 w-full h-[250px] px-14 overflow-y-hidden overflow-x-auto'>
+        <SliderThumbnailItem
+          itemActive={itemActive}
+          image='/imgs/1.webp'
+          id={1}
+          name='Challenger'
+          onClick={() => setItemActive(1)}
+        />
+        <SliderThumbnailItem
+          itemActive={itemActive}
+          image='/imgs/2.webp'
+          id={2}
+          name='Camaro'
+          onClick={() => setItemActive(2)}
+        />
+        <SliderThumbnailItem
+          itemActive={itemActive}
+          image='/imgs/3.webp'
+          id={3}
+          name='Charger'
+          onClick={() => setItemActive(3)}
+        />
+        <SliderThumbnailItem
+          itemActive={itemActive}
+          image='/imgs/4.webp'
+          id={4}
+          name='Jeep'
+          onClick={() => setItemActive(4)}
+        />
+        <SliderThumbnailItem
+          itemActive={itemActive}
+          image='/imgs/5.webp'
+          id={5}
+          name='Ram'
+          onClick={() => setItemActive(5)}
+        />
+      </ul>
+    </div>
+  );
 }
